@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,9 @@
     <script src="https://kit.fontawesome.com/8451689280.js" crossorigin="anonymous"></script>
     <title>Sign In</title>
 </head>
-<body>
 
+<body>
+    <!-- 메뉴바 -->
     <nav class="navbar">
         <div class="navbar__logo">
             <i class="fab fa-html5"></i>
@@ -24,24 +26,27 @@
         </ul>
 
         <ul class="navbar__links">
-           <li><a href="signin.html">로그인</a></li>
-           <li><a href="">회원가입</a></li> 
+            <li><a href="signin.html">로그인</a></li>
+            <li><a href="signup.html">회원가입</a></li>
         </ul>
     </nav>
 
+    <!-- 로그인 박스 -->
     <div class="sign-in">
-        <header class="header"><h1>Sign In</h1></header>
+        <header class="header">
+            <h1>로그인</h1>
+        </header>
         <form class="form">
             <span class="form__text">id</span>
-            <input type="email" class="form__input">
+            <input type="email" maxlength="50" class="form__input">
             <span class="form__text">password</span>
-            <input type="password" class="form__input">
-            <span class="form__forgot">Forgot Password?</span>
-            <button class="form__button">Sign In</button>
-            <div class="form__sign-up">
-                <span>아직 계정이 없으신가요?</span><a href="">Sign up</a>
-            </div>
+            <input type="password" maxlength="10" class="form__input">
+            <span class="form__text">confirm password</span>
+            <input type="password" maxlength="10" class="form__input">
+
+            <button class="form__button">Sign Up</button>
         </form>
     </div>
 </body>
+
 </html>
