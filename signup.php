@@ -18,7 +18,7 @@
         </div>
 
         <ul class="navbar__menu">
-            <li><a href="">Menu1</a></li>
+            <li><a href="board.php">자유게시판</a></li>
             <li><a href="">Menu2</a></li>
             <li><a href="">Menu3</a></li>
             <li><a href="">Menu4</a></li>
@@ -26,8 +26,8 @@
         </ul>
 
         <ul class="navbar__links">
-            <li><a href="signin.html">로그인</a></li>
-            <li><a href="signup.html">회원가입</a></li>
+            <li><a href="signin.php">로그인</a></li>
+            <li><a href="signup.php">회원가입</a></li>
         </ul>
     </nav>
 
@@ -51,28 +51,6 @@
         </form>
     </div>
 
-    <script>
-        var inputList = document.getElementsByClassName("form__input");
-        var inputPassword = inputList[2];
-        console.log(inputPassword);
-        var inputConfirmPassword = inputList[3];
-        console.log(inputConfirmPassword);
-
-        inputConfirmPassword.addEventListener("onclick", checkPassword());
-
-        function checkPassword() {
-            console.log("체인지 이벤트 발생");
-            var password = inputPassword.value;
-            var confirmPassword = inputConfirmPassword.value;
-
-            if (password != '' && confirmPassword != '') {
-                if (password != confirmPassword) {
-                    console.log("틀렸다");
-                    // document.getElementsByClassName("confirm-password")
-                }
-            }
-        }
-    </script>
 </body>
 
 </html>
