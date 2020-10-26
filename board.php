@@ -1,5 +1,30 @@
 <?php
-    include("./dbconnect.php");
+    // 데이터베이스에 저장된 자유게시판의 게시글 목록을 불러오기
+
+    echo "<p></p>";
+    // DB 연결
+    $mysqli = mysqli_connect("localhost", "root", "wodha", "web");
+
+    // SQL문 전송 및 오류확인
+    $result = mysqli_query($mysqli, $sql);
+
+    $sql = "SELECT * FROM general_board";
+    $result = mysqli_query($mysqli, $sql);
+    //var_dump($result);
+    // var_dump($result->num_rows); // 행(row) 몇개인지 확인할 수 있다
+
+    while ($row = mysqli_fetch_array($result)) {
+        $listId = "<td>{$row['id']}</td>";
+        $listTitle = "<td><a href='#'>{$row['title']}</a></td>";
+        $listCreated = "<td>{$row['created']}</td>";
+
+        $totalRow = $totalRow."<tr>".$listId.$listTitle.$listCreated."<tr>";
+    }
+
+    // 에러 체크
+    if ($result === false) {
+        echo mysqli_error($mysqli);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -40,31 +65,11 @@
             <thead class="board__header">
                 <th scope="col" class="board__header index"></th>
                 <th scope="col" class="board__header title">제목</th>
-                <th scope="col" class="board__header user">작성자</th>
+                <!-- <th scope="col" class="board__header user">작성자</th> -->
                 <th scope="col" class="board__header date">작성일</th>
             </thead>
             <tbody class="board__body">
-                <?php
-                // tr 태그에 td 태그 + th 활용하여 게시글 타이틀 보여주기
-                ?>
-                <tr>
-                    <td>3</td>
-                    <td>3</td>
-                    <td>3</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>3</td>
-                    <td>3</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>3</td>
-                    <td>3</td>
-                    <td>3</td>
-                </tr>
+                <?php echo $totalRow ?>
             </tbody>
         </table>
         <div class="board__page">
