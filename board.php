@@ -8,6 +8,27 @@
     $sql = "SELECT * FROM general_board ORDER BY id DESC";
     $result = mysqli_query($mysqli, $sql);
     
+    // 페이징
+    // 전체 데이터 개수를 구한다
+    //$sql = "SELECT * FROM general_board ORDER BY id DESC";
+    //$result = mysqli_query($mysqli, $sql);
+    $total_row = mysqli_num_rows($result);
+    // 한 페이지에 보여줄 게시글 수
+    $post_num = 10;
+    // 총 필요한 페이지 수를 구한다
+    if ($total_row % $post_num == 0) {
+        $total_page = $total_row / $post_num;
+    } else {
+        $total_page = ($total_row / $post_num)+1;
+    }
+    // 몫이 소수점일때 몫을 정수로 구하기 위해서 int 형변환
+    echo (int) $total_page;
+
+    // 페이지 수를 구했다면 아래에 파라미터를 추가한 링크를 만들어준다
+    // 첫페이지에서 기본적으로 최신 10개 보여주는 메소드 구현,
+    // 모든 페이지에 대해 파라미터에 있는 페이지의 게시글 보여주도록 구현
+    
+
     while ($row = mysqli_fetch_array($result)) {
         $listId = "<td class='index'>{$row['id']}</td>";
 
