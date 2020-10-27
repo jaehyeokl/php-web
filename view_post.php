@@ -62,18 +62,10 @@
             </div>
         </div>
         <div class="post__contents">
-            <p><?= $contents_text?></p>
+            <textarea readonly maxlength="2000"><?= $contents_text?></textarea>
+            <!-- <p></p> -->
         </div>
     </div>
-    
-    
-    
-    
-    <!-- <?php
-    echo $title;
-    echo $contents_text;
-    ?> -->
-
     
 </body>
 </html>

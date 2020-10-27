@@ -44,3 +44,59 @@ body {
     font-size: 14px;
     padding: 8px 10px;
 }
+
+/* 게시글 작성 */
+.write-post {
+    width: 700px;
+    margin: 10px auto;
+    padding:0 30px;
+    display: flex;
+    flex-direction: column;
+    border: double 1px #a7a4a4;
+    border-radius: 10px;
+}
+
+.write_title {
+    padding: 10px 20px;
+    border: double 1px #a7a4a4;
+    border-radius: 10px;
+    font-size: 14px;
+    color: black;
+    opacity: 0.7;
+}
+
+.write_title:focus {
+    outline: none;
+    border: solid 2px #444444;
+    border-radius: 5px;
+}
+
+.write_contents {
+    height: 350px;
+    margin-top: 20px;
+    padding: 8px 20px;
+    border: double 1px #a7a4a4;
+    border-radius: 10px;
+    resize: none;
+    font-size: 14px;
+    color: black;
+    opacity: 0.7;
+}
+
+.write_contents:focus {
+    outline: none;
+    border: solid 2px #444444;
+    border-radius: 5px;
+}
+
+.write_submit {
+    margin: 20px auto;
+    width: 80px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: green;
+    opacity: 0.8;
+    cursor: pointer;   
+}

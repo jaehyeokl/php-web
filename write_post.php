@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>글쓰기</title>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/write_post.css">
     <script src="https://kit.fontawesome.com/8451689280.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -30,10 +30,11 @@
     </nav>
 
     <!-- 게시글 작성 -->
-    <form action="uproad_post.php" method="post">
-        <input type="text" name="title" placeholder="제목을 작성해주세요" maxlength="45">
-        <textarea name="contents_text" cols="85" rows="20" placeholder="게시글을 작성해주세요"></textarea>
-        <input type="submit" value="작성완료">
+    <form class="write-post" action="uproad_post.php" method="post">
+        <h4>자유게시판</h4>
+        <input class="write_title"type="text" name="title" placeholder="제목을 작성해주세요" maxlength="45">
+        <textarea class="write_contents" name="contents_text" placeholder="게시글을 작성해주세요"></textarea>
+        <input class="write_submit" type="submit" value="등록">
     </form>
 
     

@@ -26,7 +26,7 @@
     // 페이지로 이동할 수 있는 버튼을 만들어준다
     $check_page = 1;
     while ($check_page <= $total_page) {
-        $page_button = $page_button."<a href='board.php?page=$check_page'>[$check_page]</a>";
+        $page_button = $page_button."<a href='board.php?page=$check_page'>$check_page</a>";
         $check_page++;
     }
 
