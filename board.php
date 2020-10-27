@@ -9,12 +9,12 @@
     $result = mysqli_query($mysqli, $sql);
     
     while ($row = mysqli_fetch_array($result)) {
-        $listId = "<td>{$row['id']}</td>";
+        $listId = "<td class='index'>{$row['id']}</td>";
 
         // <a> 태그의 링크에 게시글의 id를 파라미터로 추가한다
         // 게시글이 고유한 주소를 가지게 하면서, id와 일치하는 게시글의 데이터만을 가져오기 위해
-        $listTitle = "<td><a href='view_post.php?id={$row['id']}'>{$row['title']}</a></td>";
-        $listCreated = "<td>{$row['created']}</td>";
+        $listTitle = "<td class='title'><a href='view_post.php?id={$row['id']}'>{$row['title']}</a></td>";
+        $listCreated = "<td class='created'>{$row['created']}</td>";
 
         $totalRow = $totalRow."<tr>".$listId.$listTitle.$listCreated."<tr>";
     }
@@ -58,13 +58,12 @@
     <!-- 자유게시판 -->
     <div class="board">
         <h2>자유게시판</h2>
-        <a href="write_post.php" class="board__button_write">글쓰기</a>
         <table class="board__list">
             <thead class="board__header">
                 <th scope="col" class="board__header index"></th>
                 <th scope="col" class="board__header title">제목</th>
                 <!-- <th scope="col" class="board__header user">작성자</th> -->
-                <th scope="col" class="board__header date">작성일</th>
+                <th scope="col" class="board__header created">작성일</th>
             </thead>
             <tbody class="board__body">
                 <!-- 게시글 리스트 업로드-->
@@ -78,6 +77,7 @@
             ?>
             <button>다음</button>
         </div>
+        <a href="write_post.php" class="board__button_write">글쓰기</a>
     </div>
 </body>
 </html>
