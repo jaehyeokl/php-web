@@ -6,7 +6,7 @@
     // require_once("./dbconnect.php");
 
     // DB 연결
-    $mysqli = mysqli_connect("localhost", "root", "wodha", "web");
+    $mysqli = mysqli_connect("localhost", "webmanager", "dW2a#&4I\$TS&tHH6muMIyc$!isx0xg0GZJAShdoboMpgH0\$T\$c", "web");
 
     // write_post.php 에서 전달받은 값으로 SQL문 작성
     $title = $_POST['title'];

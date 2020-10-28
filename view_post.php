@@ -1,6 +1,6 @@
 <?php
     // DB 연결
-    $mysqli = mysqli_connect("localhost", "root", "wodha", "web");
+    $mysqli = mysqli_connect("localhost", "webmanager", "dW2a#&4I\$TS&tHH6muMIyc$!isx0xg0GZJAShdoboMpgH0\$T\$c", "web");
 
     // 게시글의 post id 가 포함된 url 에서 id 를 저장한다
     // 저장해둔 게시글의 id 를 sql문에 이용해서 해당 게시글의 데이터만 가져온다

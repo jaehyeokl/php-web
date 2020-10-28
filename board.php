@@ -1,8 +1,7 @@
 <?php
     // 데이터베이스에 저장된 자유게시판의 게시글 목록을 불러오기
     // DB 연결
-    $mysqli = mysqli_connect("localhost", "root", "wodha", "web");
-
+    $mysqli = mysqli_connect("localhost", "webmanager", "dW2a#&4I\$TS&tHH6muMIyc$!isx0xg0GZJAShdoboMpgH0\$T\$c", "web");
 
     // 페이징
     $get_page_sql = "SELECT * FROM general_board";

@@ -35,8 +35,9 @@
         <input class="write_title"type="text" name="title" placeholder="제목을 작성해주세요" maxlength="45">
         <textarea class="write_contents" name="contents_text" placeholder="게시글을 작성해주세요"></textarea>
         <input class="write_submit" type="submit" value="등록">
-    </form>
-
-    
+    </form> 
+    <script>
+        
+    </script>    
 </body>
 </html>
