@@ -1,23 +1,25 @@
 <?php
     // DB 연결
-    $mysqli = mysqli_connect("localhost", "webmanager", "dW2a#&4I\$TS&tHH6muMIyc$!isx0xg0GZJAShdoboMpgH0\$T\$c", "web");
+    include_once("../file/dbconnect.php");
 
-    // 게시글의 post id 가 포함된 url 에서 id 를 저장한다
-    // 저장해둔 게시글의 id 를 sql문에 이용해서 해당 게시글의 데이터만 가져온다
-    $post_id = $_GET['id'];
-    $sql = "SELECT * FROM general_board WHERE id = $post_id";
-    $result = mysqli_query($mysqli, $sql);
+    try {
+        // 게시글의 post id 가 포함된 url 에서 id 를 저장한다
+        // 저장해둔 게시글의 id 를 sql문에 이용해서 해당 게시글의 데이터만 가져온다
+        $statement = $conn->prepare("SELECT * FROM general_board WHERE id = :post_id");
+        $statement->bindParam(':post_id', $_GET['id'], PDO::PARAM_INT);
+        $statement->execute();
+            
+        // 게시글 배열에서 필요한 데이터만 불러오기
+        $row = $statement->fetch();
+        $title = $row['title'];
+        $contents_text = $row['contents_text'];
+        $created = $row['created'];
         
-    // 게시글 배열에서 필요한 데이터만 불러오기
-    $row = mysqli_fetch_array($result);
-    $title = $row['title'];
-    $contents_text = $row['contents_text'];
-    $created = $row['created'];
-
-    // 에러 체크
-    if ($result === false) {
-        echo mysqli_error($mysqli);
+    } catch (PDOException $ex) {
+        echo "failed! : ".$ex->getMessage()."<br>";
     }
+    $conn = null;
+
 ?>
 
 <!DOCTYPE html>
@@ -63,7 +65,6 @@
         </div>
         <div class="post__contents">
             <textarea readonly maxlength="2000"><?= $contents_text?></textarea>
-            <!-- <p></p> -->
         </div>
     </div>
     
