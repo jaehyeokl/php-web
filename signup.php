@@ -39,7 +39,7 @@
         <form class="form" action="register.php" method="post">
             <span class="form__text">e-mail</span>
             <input name="email" type="email" maxlength="40"class="form__input" id="email">
-            <!-- <span class="form__text email-rule" id="testid">올바른 이메일을 입력해주세요</span> -->
+            <span class="form__text email-rule" id="testid">올바른 이메일을 입력해주세요</span>
             <span class="form__text">name</span>
             <input name="name" type="text" minlength="3" maxlength="12" class="form__input">
             <span class="form__text">password</span>
@@ -48,7 +48,7 @@
             <input type="password" minlength="8" maxlength="20" class="form__input" id="confirm-password">
             <!-- span 공간을 차지하기 위해 visibility: hiddine -->
             <span class="form__text confirm-password">비밀번호가 일치하지 않습니다</span>
-            <button name="submit"type="button" class="form__button" id="submit">Sign In</button>
+            <button name="submit"type="button" class="form__button" id="submit">가입</button>
         </form>
 
         <script>
@@ -66,10 +66,10 @@
                 var checkRule = emailRule.test(email)
                 
                 if (checkRule==true) {
-                    // document.querySelector('.check-email').style.visibility = "hidden";
+                    document.querySelector('.email-rule').style.visibility = "hidden";
                     return true;
                 } else {
-                    // document.querySelector('.check-email').style.visibility = "visible";
+                    document.querySelector('.email-rule').style.visibility = "visible";
                     return false;
                 }
             }
@@ -99,11 +99,12 @@
             const submitButton = document.querySelector('#submit');
             submitButton.addEventListener("click", checkInput);
             function checkInput() {
-                var statusEmail = checkEmail();
-                var statusPassword = comparePassword();
+                const statusEmail = checkEmail();
+                const statusPassword = comparePassword();
+                const passwordLength = document.querySelector('#password').value.length;
                 
-                if (statusEmail==true && statusPassword==true) {
-                    document.querySelector("#submit").type = "submit";   
+                if (statusEmail==true && statusPassword==true && passwordLenth >=8) {
+                    submitButton.type = "submit";   
                 }
             }
         </script>

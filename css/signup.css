@@ -81,13 +81,13 @@ a {
     margin-left: 30px;
 }
 
-/* .form__test.email-rule {
+.form__text.email-rule {
     visibility: hidden;
     color: red;
     font-size: 10px;
     margin-top: 3px;
     margin-bottom: 0;
-} */
+}
 
 .form__text.confirm-password {
     visibility: hidden;

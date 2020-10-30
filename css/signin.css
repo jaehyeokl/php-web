@@ -84,6 +84,14 @@ a {
     margin-left: 30px;
 }
 
+.form__text.email-rule {
+    visibility: hidden;
+    color: red;
+    font-size: 10px;
+    margin-top: 3px;
+    margin-bottom: 0;
+}
+
 .form__forgot {
     color: cornflowerblue;
     font-size: 12px;
