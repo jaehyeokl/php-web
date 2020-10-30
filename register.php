@@ -4,17 +4,39 @@
 
     try {
         // prepare statement
-        $statement = $conn->prepare("INSERT INTO user (email, name, password) 
-        VALUES (:email, :name, :password)");
+        $statement = $conn->prepare("INSERT INTO user (email, name, password, email_hash) 
+        VALUES (:email, :name, :password, :email_hash)");
         $statement->bindParam(':email', $_POST['email']);
         $statement->bindParam(':name', $_POST['name']);
         $statement->bindParam(':password', $_POST['password']);
+        $statement->bindParam(':email_hash', $email_hash);
+        // 이메일을 MD5 hash 값으로 만들어 전달한다
+        // 사용자 이메일 인증 시 고유 url 주소를 만드는데 사용된다
+        $email_hash = hash('md5', $_POST['email'], false);
         $statement->execute();
+        
+        // 이메일 발송파일 호출
+        // 받을 이메일 주소와, 이메일 내용 설정 후 전송해야한다 [$mail->Send()]
+        include_once("../file/phpmailer_verify.php");
+        // 받는사람 이메일 주소
+        $mail->AddAddress($_POST['email']);
+        // 이메일 내용
+        $mail->Body =
+                "http://192.168.102.129/email_verify.php?email={$_POST['email']}&email_hash=$email_hash";
+        $mail->Send();
+
+        // 회원가입 완료 메세지, 로그인페이지로 돌아가기
+        echo "
+            <script>
+                alert('회원가입이 완료되었습니다');
+                location.href = 'http://192.168.102.129/signin.php';
+            </script>
+            ";
 
         // echo "New records created successfully";
     } catch (PDOException $ex) {
         echo "failed! : ".$ex->getMessage()."<br>";
-        // echo "failed! : ".$ex->getCode()."<br>";
+        echo "failed! : ".$ex->getCode()."<br>";
 
         // Error Code : 23000  -> 무결성 제약 조건 위반
         // 유저가 입력한 아이디가 기존 데이터에 존재할때(이미 가입되어있을때)

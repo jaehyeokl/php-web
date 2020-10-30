@@ -114,8 +114,8 @@
                 const statusPassword = comparePassword();
                 const passwordLength = document.querySelector('#password').value.length;
                 
-                if (statusEmail==true && statusPassword==true && passwordLenth >=8) {
-                    submitButton.type = "submit";   
+                if (statusEmail==true && statusPassword==true && passwordLength >=8) {
+                    submitButton.type = "submit";
                 }
             }
         </script>
