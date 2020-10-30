@@ -77,7 +77,7 @@
     <nav class="navbar">
         <div class="navbar__logo">
             <i class="fab fa-html5"></i>
-            <a href="/index.html">WebSite</a>
+            <a href="/index.php">WebSite</a>
         </div>
 
         <ul class="navbar__menu">
