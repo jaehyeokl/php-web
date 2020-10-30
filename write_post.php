@@ -1,3 +1,7 @@
+<?php 
+  include 'login_session.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,8 +28,15 @@
         </ul>
 
         <ul class="navbar__links">
-            <li><a href="signin.php">로그인</a></li>
-            <li><a href="signup.php">회원가입</a></li>
+            <?php
+                if ($login_session) {
+                    echo "<li><span style='color:white'>{$_SESSION['name']} 님</span></li>";
+                    echo "<li><a href='logout_session.php'>로그아웃</a></li>";
+                } else {
+                    echo "<li><a href='signin.php'>로그인</a></li>";
+                    echo "<li><a href='signup.php'>회원가입</a></li>";
+                }
+            ?>
         </ul>
     </nav>
 
