@@ -14,30 +14,40 @@
         if ($statement->rowCount() == 1) {
             // 가입된 계정일때
             $row = $statement->fetch();
-            $password = $row['password'];
-            
-            // DB에 저장된 비밀번호와 유저가 입력한 비밀번호 일치여부 확인
-            if ($password === $_POST['password']) {
-                // 비밀번호 일치 -> 로그인
-                // 세션변수에 email, name 을 저장한다
-                // 다른 웹 페이지에서 세션에 저장한 변수의 유무를 통해 로그인 여부를 확인한다
-                session_start();
-                $_SESSION['email'] = $row['email'];
-                $_SESSION['name'] = $row['name'];
-                
-                header("Location: http://192.168.102.129");
-                die();
 
-            } else {
-                // 비밀번호가 일치하지 않을때
-                echo "
-                <script>
-                    alert('비밀번호가 일치하지 않습니다');
-                    history.back();
-                </script>
-                ";
-            }
+                // 계정을 인증하여 활성화 상태일때
+                if ($row['active'] == 1) {
+                    $password = $row['password'];
+                    // DB에 저장된 비밀번호와 유저가 입력한 비밀번호 일치여부 확인
+                    if ($password === $_POST['password']) {
+                        // 비밀번호 일치 -> 로그인
+                        // 세션변수에 email, name 을 저장한다
+                        // 다른 웹 페이지에서 세션에 저장한 변수의 유무를 통해 로그인 여부를 확인한다
+                        session_start();
+                        $_SESSION['email'] = $row['email'];
+                        $_SESSION['name'] = $row['name'];
+                        
+                        header("Location: http://192.168.102.129");
+                        die();
 
+                    } else {
+                        // 비밀번호가 일치하지 않을때
+                        echo "
+                        <script>
+                            alert('비밀번호가 일치하지 않습니다');
+                            history.back();
+                        </script>
+                        ";
+                    }
+                } else {
+                    // 계정 활성화 상태가 아닐때
+                    echo "
+                        <script>
+                            alert('계정 인증 이후 로그인해주세요');
+                            history.back();
+                        </script>
+                     ";
+                }
         } else {
             // 가입된 계정이 아닐때
             echo "
