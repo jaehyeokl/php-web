@@ -23,7 +23,7 @@
         // 이메일 내용
         $mail->Body =
         "[이메일 인증]
-        
+
 계정이 생성되었습니다!
 아래 링크를 눌러 계정을 인증해주세요. 인증 이후 로그인이 가능합니다.
 http://192.168.102.129/email_verify.php?email={$_POST['email']}&email_hash=$email_hash
@@ -33,7 +33,7 @@ http://192.168.102.129/email_verify.php?email={$_POST['email']}&email_hash=$emai
         // 회원가입 완료 메세지, 로그인페이지로 돌아가기
         echo "
             <script>
-                alert('회원가입이 완료되었습니다');
+                alert('[인증 요청]\\n\\n[{$_POST['email']}]\\n계정으로 인증 메일을 발송하였습니다\\n\\n이메일 인증 이후 이용가능합니다');
                 location.href = 'http://192.168.102.129/signin.php';
             </script>
             ";
