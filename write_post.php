@@ -10,6 +10,13 @@
     <title>글쓰기</title>
     <link rel="stylesheet" href="css/write_post.css">
     <script src="https://kit.fontawesome.com/8451689280.js" crossorigin="anonymous"></script>
+    <!-- summernote 사용 위한 bootstrap, jquery -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- summernote -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.js"></script>
 </head>
 <body>
 
@@ -42,13 +49,33 @@
 
     <!-- 게시글 작성 -->
     <form class="write-post" action="uproad_post.php" method="post">
-        <h4>자유게시판</h4>
+        <h1>자유게시판</h1>
         <input class="write_title"type="text" name="title" placeholder="제목을 작성해주세요" maxlength="45">
-        <textarea class="write_contents" name="contents_text" placeholder="게시글을 작성해주세요"></textarea>
+        <textarea id="summernote" class="write_contents" name="contents_text"></textarea>
         <input class="write_submit" type="submit" value="등록">
     </form> 
+
+    <!-- summernote 설정 -->
     <script>
-        
-    </script>    
+        $('#summernote').summernote({
+            height : 400,
+            maxHeight : 400,
+            minHeight : 400,
+            // tabsize: 2,
+            focus : true,
+            lang : 'ko-KR',
+            // default
+            // toolbar: [
+            //     ['style', ['style']],
+            //     ['font', ['bold', 'underline', 'clear']],
+            //     ['fontname', ['fontname']],
+            //     ['color', ['color']],
+            //     ['para', ['ul', 'ol', 'paragraph']],
+            //     ['table', ['table']],
+            //     ['insert', ['link', 'picture', 'video']],
+            //     ['view', ['fullscreen', 'codeview', 'help']],
+            // ]
+        });
+    </script> 
 </body>
 </html>
