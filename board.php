@@ -125,7 +125,22 @@
             <?= $page_button ?>
             <!-- <button>다음</button> -->
         </div>
-        <a href="write_post.php" class="board__button_write">글쓰기</a>
+        <a href="write_post.php" class="board__button_write" value="<?=$login_session?>">글쓰기</a>
+        <script>
+            // 로그인 여부를 나타내는 php 변수($login_session)를 JS에서 사용하기 위해서
+            // 글쓰기 버튼의 value 값으로 입력하여 JS에서 사용한다
+            const writePostButton = document.querySelector(".board__button_write");
+            writePostButton.addEventListener("click", checkSession);
+            
+            // 로그인 아닐때, 제한 메세지 안내
+            function checkSession(event) {
+                if (!writePostButton.value === 1) {
+                    event.preventDefault(); // 이벤트를 취소
+                    event.stopPropagation(); // 이후 이벤트의 전파를 막는다
+                    alert("로그인 이후 글쓰기가 가능합니다");
+                }
+            }
+        </script>
     </div>
 </body>
 </html>
