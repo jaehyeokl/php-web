@@ -124,7 +124,7 @@
                 processData: false,
                 type: 'POST',
                 // url(save_board_image.php) 로 파일 전달이 완료됐을때
-                // summernote 이미지 업로드 API 를 이용하여 
+                // summernote 이미지 업로드 API 를 이용하여 서버에 '저장된' 이미지를 게시판에 입력
                 success: function(data) {
                     // alert(data);
                     // API : $('#summernote').summernote('insertImage', url, filename);
@@ -137,10 +137,6 @@
                 }
             });
         }
-
-
-        // $('#summernote').summernote('insertImage', url, file);
-
     </script> 
 </body>
 </html>
