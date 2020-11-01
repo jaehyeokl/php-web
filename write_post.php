@@ -61,9 +61,26 @@
             height : 400,
             maxHeight : 400,
             minHeight : 400,
-            // tabsize: 2,
             focus : true,
             lang : 'ko-KR',
+            callbacks: {
+                // onImageUpload: function(files, editor, welEditable) {
+                //     // $summernote.summernote('insertNode', imgNode);
+                //     console.log("image upload: ", files);
+                //     sendFile(files[0], editor, welEditable);
+                // }
+
+                onImageUpload : function(files, editor, welEditable) {
+                    console.log('image upload:', files);
+                    sendFile(files[0], editor, welEditable);
+                }
+            }
+
+            // callbacks: {
+            //    onInit: function() {
+            //         console.log('Summernote is launched');
+            //     }
+            // }
             // default
             // toolbar: [
             //     ['style', ['style']],
@@ -76,6 +93,34 @@
             //     ['view', ['fullscreen', 'codeview', 'help']],
             // ]
         });
+
+        function sendFile(file, editor, welEditable) {
+            data = new FormData();
+            data.append("file", file);
+            
+            $.ajax({
+                url: "save_board_image.php", // image 저장 소스
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: 'POST',
+                success: function(data){
+                    // alert(data);
+                    var image = $('<img>').attr('src', '' + data); // 에디터에 img 태그로 저장을 하기 위함
+                    $('#summernote').summernote("insertNode", image[0]); // summernote 에디터에 img 태그를 보여줌
+                    // editor.insertImage(welEditable, data);
+                    // editor.insertImage(welEditable, url);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus+" "+errorThrown);
+                }
+            });
+        }
+
+
+        // $('#summernote').summernote('insertImage', url, file);
+
     </script> 
 </body>
 </html>
