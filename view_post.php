@@ -7,23 +7,40 @@
     include_once("../file/dbconnect.php");
 
     try {
-        // 게시글의 post id 가 포함된 url 에서 id 를 저장한다
-        // 저장해둔 게시글의 id 를 sql문에 이용해서 해당 게시글의 데이터만 가져온다
+        // http://192.168.102.129/view_post.php?id=59
+        // id(url 파라미터)를 이용하여 게시글의 데이터를 불러온다
         $statement = $conn->prepare("SELECT * FROM general_board WHERE id = :post_id");
         $statement->bindParam(':post_id', $_GET['id'], PDO::PARAM_INT);
         $statement->execute();
             
-        // 게시글 배열에서 필요한 데이터만 불러오기
         $row = $statement->fetch();
+        $creater = $row['creater'];
         $title = $row['title'];
         $contents_text = $row['contents_text'];
         $created = $row['created'];
+        $hit = $row['hit'];
+        
+        // 게시글의 작성자를 닉네임으로 표시하기 위해서
+        // 게시글 데이터에 저장된 (creater)을 이용해 user 데이터에서 작성자의 닉네임을 불러온다
+        $name_statement = $conn->prepare("SELECT name FROM user WHERE email = :creater");
+        $name_statement->bindParam(':creater', $row['creater']);
+        $name_statement->execute();
+        $name_row = $name_statement->fetch();
+        $name = $name_row['name']; // 닉네임
+
+        // 게시글 클릭 시 조회수 증가 (+1)
+        // 로그인 세션에 저장된 계정과, 게시글의 작성자를 비교하여
+        // 작성자가 본인의 게시글을 볼때는 조회수를 추가하지 않는다
+        if ($_SESSION['email'] != $creater || $_SESSION['email'] == null) {
+            $hit_statement = $conn->prepare("UPDATE general_board SET hit = hit + 1 WHERE id = :post_id");
+            $hit_statement->bindParam(':post_id', $_GET['id'], PDO::PARAM_INT);
+            $hit_statement->execute();
+        }
         
     } catch (PDOException $ex) {
         echo "failed! : ".$ex->getMessage()."<br>";
     }
     $conn = null;
-
 ?>
 
 <!DOCTYPE html>
@@ -76,9 +93,9 @@
             <a href="board.php" class="post__link_board">자유게시판 ></a>
             <h2 class="post__title"><?= $title?></h2>
             <div class="post__information">
-                <span>작성자 : 
+                <span>작성자 :  <?=$name?>
                 <span>작성 날짜 : <?=$created?></span>
-                <span>조회수 :</span>
+                <span>조회수 : <?=$hit?></span>
             </div>
         </div>
         <div class="post__contents">
