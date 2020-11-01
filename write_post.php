@@ -64,53 +64,73 @@
             focus : true,
             lang : 'ko-KR',
             callbacks: {
-                // onImageUpload: function(files, editor, welEditable) {
-                //     // $summernote.summernote('insertNode', imgNode);
-                //     console.log("image upload: ", files);
-                //     sendFile(files[0], editor, welEditable);
-                // }
-
+                // 업로드한 이미지를 Base 64 인코딩 형태가 아닌 파일자체를 서버에 저장하기 위해서
+                // 이미지 업로드 직후에 작동하는 callback 메소드인 onImageUpload 에  
+                // 서버에 이미지를 파일로 저장하는 메소드(sendFile)을 override 한다
                 onImageUpload : function(files, editor, welEditable) {
                     console.log('image upload:', files);
                     sendFile(files[0], editor, welEditable);
                 }
-            }
+            },
 
-            // callbacks: {
-            //    onInit: function() {
-            //         console.log('Summernote is launched');
-            //     }
-            // }
-            // default
-            // toolbar: [
-            //     ['style', ['style']],
-            //     ['font', ['bold', 'underline', 'clear']],
-            //     ['fontname', ['fontname']],
-            //     ['color', ['color']],
-            //     ['para', ['ul', 'ol', 'paragraph']],
-            //     ['table', ['table']],
-            //     ['insert', ['link', 'picture', 'video']],
-            //     ['view', ['fullscreen', 'codeview', 'help']],
-            // ]
+            // 툴바에 들어갈 들어갈 기능 설정
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
+                // ['para', ['ul', 'ol', 'paragraph']],
+                // ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                // ['view', ['fullscreen', 'codeview', 'help']],
+            ],
+
+            popover: {
+                image: [
+                    // 첨부한 이미지 리사이즈 금지하기 위한 설정
+                    // ['image', ['resizeFull', 'resizeHalf', 'resizeQuarter', 'resizeNone']],
+                    // ['float', ['floatLeft', 'floatRight', 'floatNone']],
+                    // ['remove', ['removeMedia']]
+                ],
+                link: [
+                    ['link', ['linkDialogShow', 'unlink']]
+                ],
+                table: [
+                    ['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']],
+                    ['delete', ['deleteRow', 'deleteCol', 'deleteTable']],
+                ],
+                air: [
+                    ['color', ['color']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['para', ['ul', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture']]
+                ]
+            }
         });
 
+        // ajax 를 이용하여 이미지(file)을 서버에 전달(POST) 한다
+        // 파일은 이미지를 서버 내 특정 폴더에 저장하는 기능을 수행하는
+        // url(save_board_image.php) 으로 전달된다
         function sendFile(file, editor, welEditable) {
             data = new FormData();
             data.append("file", file);
             
             $.ajax({
-                url: "save_board_image.php", // image 저장 소스
+                url: "save_board_image.php",
                 data: data,
                 cache: false,
                 contentType: false,
                 processData: false,
                 type: 'POST',
-                success: function(data){
+                // url(save_board_image.php) 로 파일 전달이 완료됐을때
+                // summernote 이미지 업로드 API 를 이용하여 
+                success: function(data) {
                     // alert(data);
-                    var image = $('<img>').attr('src', '' + data); // 에디터에 img 태그로 저장을 하기 위함
-                    $('#summernote').summernote("insertNode", image[0]); // summernote 에디터에 img 태그를 보여줌
-                    // editor.insertImage(welEditable, data);
-                    // editor.insertImage(welEditable, url);
+                    // API : $('#summernote').summernote('insertImage', url, filename);
+                    // 에디터에 img 태그로 저장을 하기 위함
+                    var image = $('<img>').attr('src', '' + data);
+                    $('#summernote').summernote("insertNode", image[0]);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.log(textStatus+" "+errorThrown);

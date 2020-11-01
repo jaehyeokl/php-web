@@ -1,15 +1,18 @@
 <?php
+    // write_post.php(참조)에서 파일을 전달받아 서버 내 디렉토리에 저장한다
     if ($_FILES['file']['name']) {
         if (!$_FILES['file']['error']) {
-           $name = md5(rand(100, 200));
-           $ext = explode('.', $_FILES['file']['name']);
-           $filename = $name . '.' . $ext[1];
-           $destination = './images/' . $filename; //change this directory
-           $location = $_FILES["file"]["tmp_name"];
-           move_uploaded_file($location, $destination);
-           echo 'images/' . $filename;//change this URL
+            // 파일 이름
+            $name = md5(rand(100, 200));
+            $ext = explode('.', $_FILES['file']['name']);
+            $filename = $name . '.' . $ext[1];
+            // 전달받은 파일을 지정한 위치에 저장            
+            $destination = './images/' . $filename;
+            $uploadedFile = $_FILES["file"]["tmp_name"];
+            move_uploaded_file($uploadedFile, $destination);
+            echo 'images/' . $filename;
         } else {
-          echo  $message = 'Ooops!  Your upload triggered the following error:  '.$_FILES['file']['error'];
+          echo  $message = 'Ooops! Your upload triggered the following error:  '.$_FILES['file']['error'];
         }
     }
 ?>
