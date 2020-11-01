@@ -1,5 +1,5 @@
 <?php 
-  include 'login_session.php';
+    include 'login_session.php';
 ?>
 
 <?php
@@ -30,7 +30,6 @@
             $check_page++;
         }
 
-
         // 페이지 게시글 불러오기
         // ex) http://192.168.102.129/board.php?page=1
         // url 의 page 파라미터를 이용해서(GET) 해당 페이지에 보여질 데이터만 불러오기
@@ -52,13 +51,31 @@
 
         // 불러온 게시글을 테이블에 반영한다
         while ($row = $get_post_statement->fetch()) {
+            // 게시글의 작성자를 닉네임으로 표시하기 위해서
+            // 게시글 데이터에 저장된 (creater)을 이용해 user 데이터에서 작성자의 닉네임을 불러온다
+            $name_statement = $conn->prepare("SELECT name FROM user WHERE email = :creater");
+            $name_statement->bindParam(':creater', $row['creater']);
+            $name_statement->execute();
+            $name_row = $name_statement->fetch();
+            $name = $name_row['name']; // 닉네임
+
+            // 작성일 포맷 (년.월.일)
+            // 당일 작성한 글은 시간만 표기되도록 한다 (시:분)
+            $time_today = date("Y.m.d");
+            $time_created = date("Y.m.d", strtotime($row['created']));
+            if($time_today === $time_created) {
+                $time_created = date("H:i", strtotime($row['created']));
+            }
+            
             $listId = "<td class='index'>{$row['id']}</td>";
             // <a> 태그의 링크에 게시글의 id를 파라미터로 추가한다
             // 게시글이 고유한 주소를 가지게 하면서, id와 일치하는 게시글의 데이터만을 가져오기 위해
             $listTitle = "<td class='title'><a href='view_post.php?id={$row['id']}'>{$row['title']}</a></td>";
-            $listCreated = "<td class='created'>{$row['created']}</td>";
+            $listCreater = "<td class='creater'>{$name}</td>";
+            $listCreated = "<td class='created'>{$time_created}</td>";
+            $listHit = "<td class='created'>{$row['hit']}</td>";
 
-            $totalRow = $totalRow."<tr>".$listId.$listTitle.$listCreated."<tr>";
+            $totalRow = $totalRow."<tr>".$listId.$listTitle.$listCreater.$listCreated.$listHit."<tr>";
         }
         
     } catch (PDOException $ex) {
@@ -111,8 +128,9 @@
             <thead class="board__header">
                 <th scope="col" class="board__header index"></th>
                 <th scope="col" class="board__header title">제목</th>
-                <!-- <th scope="col" class="board__header user">작성자</th> -->
+                <th scope="col" class="board__header creater">작성자</th>
                 <th scope="col" class="board__header created">작성일</th>
+                <th scope="col" class="board__header hit">조회</th>
             </thead>
             <tbody class="board__body">
                 <!-- 게시글 리스트 업로드-->
@@ -125,16 +143,16 @@
             <?= $page_button ?>
             <!-- <button>다음</button> -->
         </div>
-        <a href="write_post.php" class="board__button_write" value="<?=$login_session?>">글쓰기</a>
+        <a href="write_post.php" class="board__button_write">글쓰기</a>
         <script>
-            // 로그인 여부를 나타내는 php 변수($login_session)를 JS에서 사용하기 위해서
-            // 글쓰기 버튼의 value 값으로 입력하여 JS에서 사용한다
+            // 로그인 한 상태에서만 글쓰기가 가능하도록 한다
+            // php 에서 로그인 여부를 나타내는 변수 ($login_session) 활용
             const writePostButton = document.querySelector(".board__button_write");
             writePostButton.addEventListener("click", checkSession);
             
             // 로그인 아닐때, 제한 메세지 안내
             function checkSession(event) {
-                if (!writePostButton.value === 1) {
+                if (!"<?= $login_session?>") {
                     event.preventDefault(); // 이벤트를 취소
                     event.stopPropagation(); // 이후 이벤트의 전파를 막는다
                     alert("로그인 이후 글쓰기가 가능합니다");

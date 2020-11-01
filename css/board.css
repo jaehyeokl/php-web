@@ -76,37 +76,33 @@ body {
     opacity: 0.8;
 }
 
-.board__header .index {
-    /* background-color: blue; */
-    width:30px;
-}
-
-.board__header .title {
-    /* background-color: red; */
-    width:500px;
-}
-
-.board__header .created {
-    /* background-color: green; */
-    width:100px;
-}
-
 .board__body tr {
     font-size: 14px;
     border-bottom: double 1px #a7a4a4;
     opacity: 0.8;
 }
 
-.board__body td {
-    padding: 10px 0;
+.board__body tr:hover {
+    background-color: #f0f0f0;
 }
 
-.board__body .index, .created {
-    text-align: center;
+.board__body td {
+    padding: 10px 0;
+    white-space: nowrap;
 }
 
 .board__body .title {
-    padding-left:10px;
+    width: 40%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.board__body .index, .creater, .created, .hit {
+    width: 10%;
+}
+
+.board__body .index, .creater, .created, .hit {
+    text-align: center;
 }
 
 .board__body a {
