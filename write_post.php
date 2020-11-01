@@ -50,10 +50,42 @@
     <!-- 게시글 작성 -->
     <form class="write-post" action="uproad_post.php" method="post">
         <h1>자유게시판</h1>
-        <input class="write_title"type="text" name="title" placeholder="제목을 작성해주세요" maxlength="45">
+        <input class="write_title"type="text" name="title" minlength="1" placeholder="제목을 작성해주세요" maxlength="45">
         <textarea id="summernote" class="write_contents" name="contents_text"></textarea>
         <input class="write_submit" type="submit" value="등록">
-    </form> 
+    </form>
+    <script>
+        // 게시글 등록버튼 눌렀을때, 제목 내용 입력여부를 체크하고
+        // 등록여부를 한번 더 물어본다
+        const writeSubmit = document.querySelector(".write_submit");
+        writeSubmit.addEventListener("click", checkInputForm);
+
+        function checkInputForm() {
+            const titleLength = document.querySelector(".write_title").value.length;
+            const contentsLength = document.querySelector(".write_contents").value.length;
+
+            // 공백 체크
+            if (!titleLength > 0) {
+                event.preventDefault();
+                event.stopPropagation();
+                alert("제목을 입력해주세요")
+            } else if (contentsLength < 2) {
+                event.preventDefault();
+                event.stopPropagation();
+                alert("내용을 작성해주세요")
+            } else {
+                // 업로드 확인 안내 
+                var upload = confirm("게시글을 등록하시겠습니까?");
+                if (upload) {
+                    alert("게시글을 등록하였습니다")
+                } else {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+            }
+        }
+
+    </script>
 
     <!-- summernote 설정 -->
     <script>
