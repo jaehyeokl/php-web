@@ -111,8 +111,8 @@
 
     <!-- 드롭다운 메뉴의 수정/삭제 -->
     <script>
-        // 기존 게시글 작성 페이지(write_post.php)에서 게시글 수정도 할 수 있도록 하기 위해서
-        // 해당 페이지에 현재 상태(새글 or 수정)인지 알려주어야 한다
+        // 기존 게시글 작성 페이지(write_post.php)에서 게시글 수정 할 수 있도록 하기 위해서
+        // 해당 페이지에서 작성된 내용이 (새 글 작성 or 기존 게시글 수정) 인지 알려주어야 한다
         // post 전송을 통해 수정할 게시글번호(id) 와 목적(mode) 를 전달한다
 
         const postModify = document.querySelector(".post_modify");
@@ -122,25 +122,46 @@
         postDelete.addEventListener("click", event=> sendPost("delete"));
 
         function sendPost(mode) {
-            var form = document.createElement("form");
-            form.setAttribute("method","post");
-            form.setAttribute("action", "write_post.php");
-            form.setAttribute("charset", "utf-8");
+            var action;
+            switch(mode) {
+                case 'modify':
+                    var postModify = confirm("게시글을 수정하시겠습니까?");
+                    if (postModify) {
+                        action = "write_post.php";
+                    }
+                    break;
+                case 'delete':
+                    var postDelete = confirm("게시글을 삭제하시겠습니까?");
+                    if (postDelete) {
+                        action = "delete_post.php";
+                    }
+                    break;
+            }
 
-            var inputMode = document.createElement("input");
-            inputMode.setAttribute("type", "hidden");
-            inputMode.setAttribute("name", "mode");
-            inputMode.setAttribute("value", mode);
-            form.appendChild(inputMode);
+            // 수정/삭제 버튼 선택시 나타나는 confirm 창에서 취소를 눌렀을때
+            // action 변수의 상태는 undefined (false)
+            // confirm 창에서 확인을 눌렀을때 action 변수에 값 지정 (true)
+            if (action) {
+                var form = document.createElement("form");
+                form.setAttribute("method","post");
+                form.setAttribute("action", action);
+                form.setAttribute("charset", "utf-8");
 
-            var inputPostId = document.createElement("input");
-            inputPostId.setAttribute("type", "hidden");
-            inputPostId.setAttribute("name", "postId");
-            inputPostId.setAttribute("value", <?=$_GET['id']?>);
-            form.appendChild(inputPostId);
+                var inputMode = document.createElement("input");
+                inputMode.setAttribute("type", "hidden");
+                inputMode.setAttribute("name", "mode");
+                inputMode.setAttribute("value", mode);
+                form.appendChild(inputMode);
 
-            document.body.appendChild(form);
-            form.submit();
+                var inputPostId = document.createElement("input");
+                inputPostId.setAttribute("type", "hidden");
+                inputPostId.setAttribute("name", "postId");
+                inputPostId.setAttribute("value", <?=$_GET['id']?>);
+                form.appendChild(inputPostId);
+
+                document.body.appendChild(form);
+                form.submit();
+            } 
         }
     </script>
 
