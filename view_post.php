@@ -90,8 +90,14 @@
     <!-- 게시글 보기 -->
     <div class="post">
         <div class="post__header">
-            <a href="board.php" class="post__link_board">자유게시판 ></a>
-            <h2 class="post__title"><?= $title?></h2>
+            <div class="post__header_top">
+                <a href="board.php" class="post__link_board">자유게시판 ></a>
+                <i class="fas fa-ellipsis-v dropdown">
+                    <a href="">수정</a>
+                    <a href="">삭제</a>
+                </i>
+            </div>
+            <h1 class="post__title"><?= $title?></h1>
             <div class="post__information">
                 <span>작성자 :  <?=$name?>
                 <span>작성 날짜 : <?=$created?></span>

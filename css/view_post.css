@@ -52,10 +52,9 @@ body {
     display: flex;
     flex-direction: column;
     margin: 30px auto;
-    /* align-items: center; */
     width: 1000px;
-    border: double 1px #a7a4a4;
-    border-radius: 10px;
+    /* border: double 1px #a7a4a4; */
+    /* border-radius: 10px; */
 }
 
 .post__header {
@@ -65,12 +64,52 @@ body {
     border-bottom: double 1px #444444;
 }
 
+.post__header_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.post__header_top i {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    font-size: 20px;
+    opacity: 0.8;
+}
+
 .post__link_board {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     text-decoration: none;
     color: green;
     opacity: 0.5;
+}
+
+.dropdown a {
+    visibility: hidden;
+    background-color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 4px;
+    border: double 1px #444444;
+}
+
+.dropdown a:hover {
+    background-color: rgb(233, 233, 233);
+}
+
+.dropdown:hover a {
+    visibility: visible;
+    text-decoration: none;
+    color: #444444;
+}
+
+.post__title {
+    color: #444444;
+    margin-top: 10px;
+    margin-bottom: 30px;
 }
 
 .post__information span {
@@ -85,8 +124,6 @@ body {
 
 .post__contents {
     margin: 0 30px 20px 30px;
-    /* padding: 10px 20px; */
-    /* height: 300px; */
 }
 
 
