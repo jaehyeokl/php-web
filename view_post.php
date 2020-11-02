@@ -1,5 +1,5 @@
 <?php 
-    include 'login_session.php';
+    include 'login_session.php';   
 ?>
 
 <?php
@@ -41,6 +41,25 @@
         echo "failed! : ".$ex->getMessage()."<br>";
     }
     $conn = null;
+?>
+
+<?php
+    // 게시글 수정/삭제 권한 부여
+    // 로그인 상태에서 해당 계정으로 작성한 글만 수정/삭제 가능
+    // DB에 있는 게시글 작성자 계정과 (로그인 중일때)세션에 저장된 계정 비교
+    if ($login_session) {
+        // 로그인 여부 확인
+        if ($creater === $_SESSION['email']) {
+            // 로그인한 계정으로 작성한 게시글일때
+            $post_permission = true;
+        } else {
+            // 다른 계정 게시글일때
+            $post_permission = false;
+        }
+    } else {
+        // 로그인 하지 않았을때
+        $post_permission = false;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -114,13 +133,21 @@
         // 기존 게시글 작성 페이지(write_post.php)에서 게시글 수정 할 수 있도록 하기 위해서
         // 해당 페이지에서 작성된 내용이 (새 글 작성 or 기존 게시글 수정) 인지 알려주어야 한다
         // post 전송을 통해 수정할 게시글번호(id) 와 목적(mode) 를 전달한다
-
         const postModify = document.querySelector(".post_modify");
-        postModify.addEventListener("click", event=> sendPost("modify"));
-
         const postDelete = document.querySelector(".post_delete");
-        postDelete.addEventListener("click", event=> sendPost("delete"));
+        
+        // 게시글의 수정/삭제 권한이 있는지 확인, 안내
+        if ('<?=$login_session?>' == 1 && '<?=$post_permission?>' == 1) {
+            // 로그인한 계정으로 작성한 게시글일때
+            postModify.addEventListener("click", event=> sendPost("modify"));
+            postDelete.addEventListener("click", event=> sendPost("delete"));
+        } else {
+            // 로그인 하지 않았을때 또는 로그인한 계정으로 작성한 글이 아닐때
+            postModify.addEventListener("click", notPermission);
+            postDelete.addEventListener("click", notPermission);
+        }
 
+        // 본인 게시글일때 수정/삭제 시
         function sendPost(mode) {
             var action;
             switch(mode) {
@@ -162,6 +189,15 @@
                 document.body.appendChild(form);
                 form.submit();
             } 
+        }
+
+        // 수정/삭제 권한 없을때
+        function notPermission() {
+            if ('<?=$login_session?>' == 1) {
+                alert("권한이 없습니다");
+            } else {
+                alert("로그인 후 이용해주세요");
+            }
         }
     </script>
 
