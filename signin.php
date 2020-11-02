@@ -53,6 +53,7 @@
             <span class="form__text email-rule" id="testid">올바른 이메일을 입력해주세요</span>
             <span class="form__text">password</span>
             <input name="password" type="password" minlength="8" maxlength="20" class="form__input" id="password">
+            <a class="form__button_forgot" type="button" href="#">비밀번호를 잊으셨나요?</a>
             <button name="submit" type="button" class="form__button" id="submit">로그인</button>
         </form>
 
@@ -92,6 +93,45 @@
             }
         </script>
     </div>
+
+    <!-- 비밀번호 찾기 레이어 팝업 -->
+    <div class="popup">
+        <form action="phptest.php" method="post">
+            <p>가입한 계정을 입력해주세요</p>
+            <input class="popup__input" name="email" type="email">
+            <button class="popup__button submit" type="button">비밀번호 찾기</button>
+            <button class="popup__button cancel"type="button">취소</button>
+        </form>
+    </div>
+    
+    <!-- 비밀번호 찾기 -->
+    <script>
+        const forgotPassword = document.querySelector(".form__button_forgot");
+        forgotPassword.addEventListener("click", popup);
+
+        const popupSubmit = document.querySelector(".popup__button.submit");
+        popupSubmit.addEventListener("click", submit);
+
+        const popupCancel = document.querySelector(".popup__button.cancel");
+        popupCancel.addEventListener("click", cancel);
+        
+        function popup() {
+            // 비밀번호 찾기 팝업창 띄우기
+            document.querySelector(".popup").style.display = "flex";
+        }
+
+        function submit() {
+            // 입력값이 있을때 데이터가 전달(submit)되도록 한다
+            var popupInput = document.querySelector(".popup__input").value;
+            if (popupInput.length > 0) {
+                popupSubmit.type = "submit";
+            }
+        }
+        
+        function cancel() {
+            document.querySelector(".popup").style.display = "none";
+        }     
+    </script>
 </body>
 
 </html>

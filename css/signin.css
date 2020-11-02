@@ -6,7 +6,7 @@ body {
     align-items: center; */
 }
 
-a {
+.navbar a {
     text-decoration: none;
     color: white;
 }
@@ -62,7 +62,6 @@ a {
 .form {
     display: flex;
     flex-direction: column;
-    
 }
 
 .header {
@@ -92,14 +91,6 @@ a {
     margin-bottom: 0;
 }
 
-.form__forgot {
-    color: cornflowerblue;
-    font-size: 12px;
-    text-align: end;
-    margin-top: 5px;
-    margin-right: 30px;
-}
-
 .form__button {
     height: 40px;
     margin: 30px;
@@ -110,19 +101,96 @@ a {
     border-radius: 20px;
 }
 
-.form__sign-up {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-}
-
-.form__sign-up span {
-    margin-right: 5px;
-    font-size: 10px;
-}
-
-.form__sign-up a{
+.form__button_forgot {
     text-decoration: none;
     color: cornflowerblue;
+    font-size: 12px;
+    text-align: end;
+    margin-top: 5px;
+    margin-left: 140px;
+    margin-right: 30px;
+    white-space: nowrap;
+}
+
+.form__button_forgot:hover {
+    font-weight: bold;
+}
+
+/* 비밀번호 찾기 팝업창 */
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 150px;
+    left: 50%;
+    margin-left: -200px;
+    box-shadow : rgba(0,0,0,0.5) 0 0 0 9999px;
+    z-index : 100;
+}
+
+.popup form {
+    background-color: white;
+    width: 400px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+}
+
+.popup p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: black;
+    opacity: 0.8;
+}
+
+.popup__input {
+    width: 260px;
+    height: 30px;
+    margin-bottom: 20px;
+    border-radius: 30px;
+    border: double 2px #444444;
+    font-size: 16px;
+    color: black;
+    opacity: 0.7;
+    text-align: center;
+}
+
+.popup__input:focus {
+    outline: none;
+    border: solid 2px cornflowerblue;
+    border-radius: 30px;
+}
+
+.popup__button.submit{
+    width: 260px;
+    height: 35px;
+    border-radius: 30px;
+    border: none;
+    font-size: 14px;
+    background-color: cornflowerblue;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.popup__button.submit:hover{
+    outline: none;
+    width: 270px;
+    height: 40px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 15px;
+    /* visibility: h; */
+}
+
+.popup__button.cancel {
+    width: 60px;
+    height: 25px;
+    border-radius: 30px;
+    border: none;
+    font-size: 14px;
+    background-color: #d8d8d8;
+    color: #444444;
 }
