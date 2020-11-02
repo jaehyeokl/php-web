@@ -1,5 +1,5 @@
 <?php 
-  include 'login_session.php';
+    include 'login_session.php';
 ?>
 
 <?php
@@ -105,7 +105,7 @@
             </div>
         </div>
         <div class="post__contents">
-            <textarea id="summernote"><?= $contents_text?></textarea>
+            <textarea id="summernote"></textarea>
         </div>
     </div>
 
@@ -168,8 +168,9 @@
     <!-- summernote 설정 -->
     <script>
         $('#summernote').summernote({
+            airMode: true,
             height : 400,
-            maxHeight : 400,
+            // maxHeight : 400,
             minHeight : 400,
             // tabsize: 2,
             focus : true,
@@ -190,11 +191,16 @@
             ]
         });
 
-        // 쓰기 비활성화(읽기전용)
-        // 공식문서에서는 아래 주석처리된 코드를 안내하지만 실제 작동 X
-        // 아래에 있는 코드로 비활성화 구현하였음
-        // $('.summernote').summernote('disable');
-        $('#summernote').next().find(".note-editable").attr("contenteditable", false);
+        // 저장된 게시글 적용
+        var contents = '<?=$contents_text?>';
+        $('#summernote').summernote('pasteHTML', contents);
+
+        // 읽기 전용, 쓰기 기능 비활성화
+        $('#summernote').summernote('disable');
+
+        // 배경색 적용되지 않음
+        // $('#summernote').style.backgroundColor = "#444444";
+        // documnet.querySelector("#summernote").style.backgroundColor =  '#444444';
     </script> 
     
 </body>
