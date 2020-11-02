@@ -1,5 +1,23 @@
 <?php 
-  include 'login_session.php';
+    include 'login_session.php';
+?>
+
+<?php
+    // 게시글 [수정]을 통해 페이지 접근했을때
+    // 수정을 위한 기존 데이터 (타이틀, 게시글)을 불러온다
+    if ($_POST['mode'] === "modify") {
+        // DB 연결
+        include_once("../file/dbconnect.php");
+
+        $statement = $conn->prepare("SELECT title, contents_text FROM general_board WHERE id = :id");
+        $statement->bindParam(':id', $_POST['postId'], PDO::PARAM_INT);
+        $statement->execute();
+
+        $row = $statement->fetch();
+
+        $title = $row['title'];
+        $contents = $row['contents_text'];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -50,15 +68,23 @@
     <!-- 게시글 작성 -->
     <form class="write-post" action="uproad_post.php" method="post">
         <h1>자유게시판</h1>
+        <input class="write_modify" type="hidden" name="modify_post_id" value="0">
         <input class="write_title"type="text" name="title" minlength="1" placeholder="제목을 작성해주세요" maxlength="45">
         <textarea id="summernote" class="write_contents" name="contents_text"></textarea>
         <input class="write_submit" type="submit" value="등록">
     </form>
+
+    <!-- 등록 버튼 -->
     <script>
         // 게시글 등록버튼 눌렀을때, 제목 내용 입력여부를 체크하고
         // 등록여부를 한번 더 물어본다
         const writeSubmit = document.querySelector(".write_submit");
         writeSubmit.addEventListener("click", checkInputForm);
+
+        // 수정모드일때 버튼의 텍스트를 '수정'으로 변경
+        if ('<?=$_POST['mode']?>' == 'modify') {
+            writeSubmit.value = '수정';
+        }
 
         function checkInputForm() {
             const titleLength = document.querySelector(".write_title").value.length;
@@ -75,16 +101,15 @@
                 alert("내용을 작성해주세요")
             } else {
                 // 업로드 확인 안내 
-                var upload = confirm("게시글을 등록하시겠습니까?");
+                var upload = confirm("게시글을 업로드 하시겠습니까?");
                 if (upload) {
-                    alert("게시글을 등록하였습니다")
+                    // alert("게시글을 등록하였습니다")
                 } else {
                     event.preventDefault();
                     event.stopPropagation();
                 }
             }
         }
-
     </script>
 
     <!-- summernote 설정 -->
@@ -170,5 +195,21 @@
             });
         }
     </script> 
+
+    <!-- 수정 모드일때 -->
+    <script>    
+        if ('<?=$_POST['mode']?>' == 'modify') {
+            // 게시글의 입력값을 전달받는 action(upload.php)에서 
+            // 특정 게시글 수정에 대한 작업을 처리할 수 있도록 post Id 를 전달한다
+            document.querySelector(".write_modify").value = '<?=$_POST['postId']?>';
+            
+            // 기존 타이틀 입력
+            var title = '<?= $title?>';
+            document.querySelector(".write_title").value = title;
+            // 기존 내용(썸머노트)
+            var contents = '<?= $contents?>';
+            $('#summernote').summernote('pasteHTML', contents);
+        }
+    </script>
 </body>
 </html>

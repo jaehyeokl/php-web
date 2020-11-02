@@ -93,8 +93,8 @@
             <div class="post__header_top">
                 <a href="board.php" class="post__link_board">자유게시판 ></a>
                 <i class="fas fa-ellipsis-v dropdown">
-                    <a href="">수정</a>
-                    <a href="">삭제</a>
+                    <a href="#" class="post_modify">수정</a>
+                    <a href="#" class="post_delete">삭제</a>
                 </i>
             </div>
             <h1 class="post__title"><?= $title?></h1>
@@ -108,6 +108,41 @@
             <textarea id="summernote"><?= $contents_text?></textarea>
         </div>
     </div>
+
+    <!-- 드롭다운 메뉴의 수정/삭제 -->
+    <script>
+        // 기존 게시글 작성 페이지(write_post.php)에서 게시글 수정도 할 수 있도록 하기 위해서
+        // 해당 페이지에 현재 상태(새글 or 수정)인지 알려주어야 한다
+        // post 전송을 통해 수정할 게시글번호(id) 와 목적(mode) 를 전달한다
+
+        const postModify = document.querySelector(".post_modify");
+        postModify.addEventListener("click", event=> sendPost("modify"));
+
+        const postDelete = document.querySelector(".post_delete");
+        postDelete.addEventListener("click", event=> sendPost("delete"));
+
+        function sendPost(mode) {
+            var form = document.createElement("form");
+            form.setAttribute("method","post");
+            form.setAttribute("action", "write_post.php");
+            form.setAttribute("charset", "utf-8");
+
+            var inputMode = document.createElement("input");
+            inputMode.setAttribute("type", "hidden");
+            inputMode.setAttribute("name", "mode");
+            inputMode.setAttribute("value", mode);
+            form.appendChild(inputMode);
+
+            var inputPostId = document.createElement("input");
+            inputPostId.setAttribute("type", "hidden");
+            inputPostId.setAttribute("name", "postId");
+            inputPostId.setAttribute("value", <?=$_GET['id']?>);
+            form.appendChild(inputPostId);
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
 
     <!-- summernote 설정 -->
     <script>
