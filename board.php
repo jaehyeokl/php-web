@@ -8,7 +8,7 @@
 
     try {
         // 페이징
-        $get_page_statement = $conn->query("SELECT * FROM general_board");
+        $get_page_statement = $conn->query("SELECT * FROM general_board WHERE del = 0");
         // ex) http://192.168.102.129/board.php?page=1
         // 페이지번호를 파라미터로 가지는 링크를 부여함으로써 페이지를 나눈다
         // 먼저 총 데이터(게시글)의 개수를 통해 페이지 수를 구한다
@@ -40,7 +40,7 @@
             $page = 1;
         }
         // 최근 작성한 글이 가장 위에 나타나도록 id의 내림차순으로 데이터를 불러온다
-        $get_post_statement = $conn->prepare("SELECT * FROM general_board ORDER BY id DESC LIMIT :start_point, :post_num");
+        $get_post_statement = $conn->prepare("SELECT * FROM general_board WHERE del = 0 ORDER BY id DESC LIMIT :start_point, :post_num");
         // SQL문 - LIMIT 시작(row), 불러올 개수
         // 입력한 시작 지점(start_point를 구하기)
         $start_point = ($page - 1)*$post_num;
