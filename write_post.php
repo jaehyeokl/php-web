@@ -214,10 +214,7 @@
         document.querySelector(".select_video").addEventListener("change", sendVideo);
 
         function sendVideo() {
-            console.log("실행");
             fileVideo = new FormData(document.querySelector(".write-post"));
-            // fileVideo = new FormData(document.querySelector(".select_video"));
-            // fileVideo.append("file", file);
             
             $.ajax({
                 url: "save_board_video.php",
@@ -226,20 +223,20 @@
                 contentType: false,
                 processData: false,
                 type: 'POST',
-                // url(save_board_image.php) 로 파일 전달이 완료됐을때
-                // summernote 이미지 업로드 API 를 이용하여 서버에 '저장된' 이미지를 게시판에 입력
                 success: function(data) {
-                    alert(data);
-                    // 에디터에 img 태그로 저장을 하기 위함
-                    var video = $('<video>').attr({'src':'' + data, 'controls':true, 'width':'800'});
-                    $('#summernote').summernote("insertNode", video[0]);
+                    if (data === "") {
+                        // alert(data);
+                        alert("5M 이하의 동영상만 업로드 할 수 있습니다")
+                    } else {
+                        // 동영상태그에 컨트롤러, 너비 지정
+                        var video = $('<video>').attr({'src':'' + data, 'controls':true, 'width':'800'});
+                        $('#summernote').summernote("insertNode", video[0]);
+                    }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.log(textStatus+" "+errorThrown);
                 }
             });
-            console.log("끝");
-
         }
 
         // XMLHttpRequest 직접 구현하여 FormData 전달하였음,
@@ -264,9 +261,6 @@
         //     xhr.open('POST', 'http://192.168.102.129/phptest.php');
         //     xhr.send(formData);
         // }
-        
-
-        // 서버에 저장된 파일을 게시판에 불러오기
     </script>
 
     <!-- 수정 모드일때 -->

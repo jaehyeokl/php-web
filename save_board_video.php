@@ -12,7 +12,7 @@
             move_uploaded_file($uploadedFile, $destination);
             echo 'video/' . $filename;
         } else {
-            echo $message = 'Ooops! Your upload triggered the following error:  '.$_FILES['video']['error'];
+            echo $message = 'Ooops!  Your upload triggered the following error:  '.$_FILES['video']['error'];
         }
     }
 ?>
