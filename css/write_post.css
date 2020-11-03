@@ -91,3 +91,31 @@ body {
     opacity: 0.8;
     cursor: pointer;   
 }
+
+.write_video {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 214px;
+    left: 750px;
+    z-index: 1;
+}
+
+.write_video i {
+    width: 32px;
+    height: 32px;
+    font-size: 22px;
+    text-align: center;
+    line-height: 32px;
+    background-color: white;
+    border: double 1px #d8d8d8;
+    border-radius: 3px;
+}
+
+.write_video i:hover {
+    background-color: #c7c7c7;
+}
+
+.select_video {
+    /* visibility: hidden; */
+}

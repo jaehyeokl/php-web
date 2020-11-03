@@ -96,7 +96,7 @@
 
     <!-- 비밀번호 찾기 레이어 팝업 -->
     <div class="popup">
-        <form action="phptest.php" method="post">
+        <form action="send_password.php" method="post">
             <p>가입한 계정을 입력해주세요</p>
             <input class="popup__input" name="email" type="email">
             <button class="popup__button submit" type="button">비밀번호 찾기</button>

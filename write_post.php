@@ -70,6 +70,12 @@
         <h1>자유게시판</h1>
         <input class="write_modify" type="hidden" name="modify_post_id" value="0">
         <input class="write_title"type="text" name="title" minlength="1" placeholder="제목을 작성해주세요" maxlength="45">
+        <div class="write_video">
+            <i id="write_video" class="fas fa-file-video"></i>
+            <input class="select_video" name= "video" type="file" accept="video/*">
+            <!-- <button type="button">동영상</button> -->
+            <!-- <button type="button">저장</button> -->
+        </div>
         <textarea id="summernote" class="write_contents" name="contents_text"></textarea>
         <input class="write_submit" type="submit" value="등록">
     </form>
@@ -194,7 +200,74 @@
                 }
             });
         }
-    </script> 
+    </script>
+
+    <!-- 썸머노트에 비디오파일 올리기 -->
+    <script>
+        // 파일 업로드 버튼 이미지버튼으로 대체하기
+        document.querySelector("#write_video").addEventListener("click", selectVideo);
+        function selectVideo() {
+            document.querySelector(".select_video").click();
+        }
+
+        // 파일 업로드 시 서버에 파일을 저장
+        document.querySelector(".select_video").addEventListener("change", sendVideo);
+
+        function sendVideo() {
+            console.log("실행");
+            fileVideo = new FormData(document.querySelector(".write-post"));
+            // fileVideo = new FormData(document.querySelector(".select_video"));
+            // fileVideo.append("file", file);
+            
+            $.ajax({
+                url: "save_board_video.php",
+                data: fileVideo,
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: 'POST',
+                // url(save_board_image.php) 로 파일 전달이 완료됐을때
+                // summernote 이미지 업로드 API 를 이용하여 서버에 '저장된' 이미지를 게시판에 입력
+                success: function(data) {
+                    alert(data);
+                    // 에디터에 img 태그로 저장을 하기 위함
+                    var video = $('<video>').attr({'src':'' + data, 'controls':true, 'width':'800'});
+                    $('#summernote').summernote("insertNode", video[0]);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus+" "+errorThrown);
+                }
+            });
+            console.log("끝");
+
+        }
+
+        // XMLHttpRequest 직접 구현하여 FormData 전달하였음,
+        // 전달 완료 후 요청페이지에서 처리한 값을 다시 가져오는 것 구현하지 않고
+        // jQuery 의 ajax를 사용하였음
+        // function sendVideo() {
+        //     var xhr = new XMLHttpRequest();
+        //     var formData = new FormData(document.querySelector(".write-post"));
+        
+        //     xhr.onload = function() {
+        //         if (xhr.status === 200 || xhr.status === 201) {
+        //             // 요청 완료
+        //             console.log(xhr.responseText);
+        //             console.log("성공");
+        //         } else {
+        //             // 요청 실패
+        //             console.error(xhr.responseText);
+        //             console.log("실패");
+        //         }
+        //     };
+
+        //     xhr.open('POST', 'http://192.168.102.129/phptest.php');
+        //     xhr.send(formData);
+        // }
+        
+
+        // 서버에 저장된 파일을 게시판에 불러오기
+    </script>
 
     <!-- 수정 모드일때 -->
     <script>    
