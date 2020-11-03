@@ -23,12 +23,6 @@
         }
         // 몫이 소수점일때 몫(페이지)을 정수로 구하기 위해서 int 형변환
         $total_page = (int) $total_page;
-        // 페이지 수만큼 페이지 이동 버튼을 생성
-        $check_page = 1;
-        while ($check_page <= $total_page) {
-            $page_button = $page_button."<a href='board.php?page=$check_page'>$check_page</a>";
-            $check_page++;
-        }
 
         // 페이지 게시글 불러오기
         // ex) http://192.168.102.129/board.php?page=1
@@ -76,6 +70,20 @@
             $listHit = "<td class='created'>{$row['hit']}</td>";
 
             $totalRow = $totalRow."<tr>".$listId.$listTitle.$listCreater.$listCreated.$listHit."<tr>";
+        }
+
+        // 페이지 버튼 구현
+        // 현재 페이지의 좌, 우로 보여줄 수 있는 페이지가 없을때
+        if (($page - 2) < 1) {
+            $page = 3;
+        } else if ($page + 2 > $total_page) {
+            $page = $total_page - 2;
+        }
+        // 현 페이지를 기준으로 전,후 2페이지씩 보여주도록 구현(총 5페이지)
+        $check_page = $page - 2;
+        while ($check_page <= $page+2) {
+            $page_button = $page_button."<a href='board.php?page=$check_page'>$check_page</a>";
+            $check_page++;
         }
         
     } catch (PDOException $ex) {
@@ -138,10 +146,10 @@
             </tbody>
         </table>
         <div class="board__page">
-            <!-- <button>이전</button> -->
+            <!-- <button class="page_left"><</button> -->
             <!-- 페이지 수에따라 페이지 버튼이 나타나도록 구현한다 -->
             <?= $page_button ?>
-            <!-- <button>다음</button> -->
+            <!-- <button class="page_right">></button> -->
         </div>
         <a href="write_post.php" class="board__button_write">글쓰기</a>
         <script>
