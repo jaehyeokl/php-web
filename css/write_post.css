@@ -110,6 +110,7 @@ body {
     background-color: white;
     border: double 1px #d8d8d8;
     border-radius: 3px;
+    cursor: pointer;
 }
 
 .write_video i:hover {
@@ -117,5 +118,5 @@ body {
 }
 
 .select_video {
-    /* visibility: hidden; */
+    visibility: hidden;
 }
