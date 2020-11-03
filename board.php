@@ -79,10 +79,15 @@
         } else if ($page + 2 > $total_page) {
             $page = $total_page - 2;
         }
-        // 현 페이지를 기준으로 전,후 2페이지씩 보여주도록 구현(총 5페이지)
+        // // 현 페이지를 기준으로 전,후 2페이지씩 보여주도록 구현(총 5페이지)
         $check_page = $page - 2;
         while ($check_page <= $page+2) {
-            $page_button = $page_button."<a href='board.php?page=$check_page'>$check_page</a>";
+            if ($check_page == $page) {
+                // 현제 페이지의 번호에 css 처리를 하기위해 클래스명을 별도로 작성
+                $page_button = $page_button."<a class='now-page' href='board.php?page=$check_page'>$check_page</a>";
+            } else {
+                $page_button = $page_button."<a href='board.php?page=$check_page'>$check_page</a>";
+            }
             $check_page++;
         }
         
