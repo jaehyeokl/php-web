@@ -18,6 +18,8 @@
         // 이메일 발송파일 호출
         // 받을 이메일 주소와, 이메일 내용 설정 후 전송해야한다 [$mail->Send()]
         include_once("../file/phpmailer_verify.php");
+        // 메일 제목
+        $mail->Subject = '[가입인증] Please verify your email address.';
         // 받는사람 이메일 주소
         $mail->AddAddress($_POST['email']);
         // 이메일 내용
