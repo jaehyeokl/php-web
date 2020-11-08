@@ -22,6 +22,6 @@
     }
     $conn = null;
 
-    header("Location: http://192.168.102.129/board.php");
+    header("Location: http://54.180.215.159/board.php");
     die();
 ?>

@@ -28,7 +28,7 @@
 
 계정이 생성되었습니다!
 아래 링크를 눌러 계정을 인증해주세요. 인증 이후 로그인이 가능합니다.
-http://192.168.102.129/email_verify.php?email={$_POST['email']}&email_hash=$email_hash
+http://54.180.215.159/email_verify.php?email={$_POST['email']}&email_hash=$email_hash
         ";
         $mail->Send();
 
@@ -36,7 +36,7 @@ http://192.168.102.129/email_verify.php?email={$_POST['email']}&email_hash=$emai
         echo "
             <script>
                 alert('[인증 요청]\\n\\n[{$_POST['email']}]\\n계정으로 인증 메일을 발송하였습니다\\n\\n이메일 인증 이후 이용가능합니다');
-                location.href = 'http://192.168.102.129/signin.php';
+                location.href = 'http://54.180.215.159/signin.php';
             </script>
             ";
 

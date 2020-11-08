@@ -258,7 +258,7 @@
         //         }
         //     };
 
-        //     xhr.open('POST', 'http://192.168.102.129/phptest.php');
+        //     xhr.open('POST', 'http://54.180.215.159/phptest.php');
         //     xhr.send(formData);
         // }
     </script>

@@ -6,7 +6,7 @@
 
     // 파라미터 값이 없을때(비정상적인 경로로 페이지 접근 시) 홈으로 이동
     if (!isset($_GET['email']) || !isset($_GET['email_hash'])) {
-        header("Location: http://192.168.102.129");
+        header("Location: http://54.180.215.159");
         die("비정상 경로 접근");
     }
 
@@ -32,13 +32,13 @@
             echo "
                 <script>
                     alert('이메일 인증이 완료되었습니다');
-                    location.href = 'http://192.168.102.129';
+                    location.href = 'http://54.180.215.159';
                 </script>
                 ";
             }
         } else {
             // 이미 인증 완료했지만, 해당 링크로 또 페이지 접근했을 경우
-            header("Location: http://192.168.102.129");
+            header("Location: http://54.180.215.159");
             die("인증된 계정으로 url 접근");
         }
 

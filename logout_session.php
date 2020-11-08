@@ -4,6 +4,6 @@
     session_unset();
     session_destroy();
 
-    header("Location: http://192.168.102.129");
+    header("Location: http://54.180.215.159");
     die();
 ?>
