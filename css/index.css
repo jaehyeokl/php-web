@@ -1,5 +1,9 @@
 body {
     margin: 0;
+    padding: 0;
+    overflow-y: hidden; 
+    overflow-x: hidden;
+    background-image: url(images/index.jpg);
 }
 
 a {
@@ -44,3 +48,18 @@ a {
     font-size: 12px;
     padding: 8px 10px;
 }
+
+/* 배경 영상 */
+/* video {
+    top: 0px;
+    left: 0px;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;d
+    z-index: -1000;
+    overflow: hidden;
+} */
+
+/*  배경 이미지 */
+

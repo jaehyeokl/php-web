@@ -40,6 +40,10 @@
             ?>
         </ul>
     </nav>
+    <!-- <video muted autoplay>
+        <source src="video/index.mp4" type="video/mp4">
+        <strong>Your browser does not support the video tag.</strong>
+    </video> -->
 </body>
 
 </html>
