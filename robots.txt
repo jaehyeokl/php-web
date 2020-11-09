@@ -1,2 +1,11 @@
+# 모든 웹사이트 로봇 허용
 User-agent: *
 Allow:/
+
+# 이미지폴더 접근 금지
+User-agent: *
+Disallow: /images/
+
+# 비디오폴더 접근 금지
+User-agent: *
+Disallow: /video/
