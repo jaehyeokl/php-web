@@ -2,14 +2,8 @@
 User-agent: *
 Allow:/
 
-# CSS 폴더 접근 금지
+# 폴더 접근 금지
 User-agent: *
 Disallow: /css/
-
-# 이미지폴더 접근 금지
-User-agent: *
 Disallow: /images/
-
-# 비디오폴더 접근 금지
-User-agent: *
 Disallow: /video/
