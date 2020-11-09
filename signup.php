@@ -7,6 +7,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="회원가입 페이지">
     <meta property="og:title" content="ego lego" />
     <meta property="og:description" content="활동적인 아웃도어 라이프스타일" />
