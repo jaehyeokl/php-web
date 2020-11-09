@@ -6,11 +6,13 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="비밀번호 변경">
+    <meta property="og:title" content="ego lego" />
+    <meta property="og:description" content="활동적인 아웃도어 라이프스타일" />
+    <title>비밀번호 변경</title>
     <link rel="stylesheet" href="css/change_password.css">
 </head>
 <body>

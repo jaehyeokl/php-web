@@ -21,11 +21,13 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>글쓰기</title>
+    <meta name="description" content="자유게시판 게시글 작성">
+    <meta property="og:title" content="ego lego" />
+    <meta property="og:description" content="활동적인 아웃도어 라이프스타일" />
+    <title>게시글 작성</title>
     <link rel="stylesheet" href="css/write_post.css">
     <script src="https://kit.fontawesome.com/8451689280.js" crossorigin="anonymous"></script>
     <!-- summernote 사용 위한 bootstrap, jquery -->

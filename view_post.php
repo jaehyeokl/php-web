@@ -63,13 +63,15 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="자유게시판 게시글보기">
+    <meta property="og:title" content="ego lego" />
+    <meta property="og:description" content="활동적인 아웃도어 라이프스타일" />
+    <title>자유게시판</title>
     <link rel="stylesheet" href="css/view_post.css">
     <script src="https://kit.fontawesome.com/8451689280.js" crossorigin="anonymous"></script>
-    <title>자유게시판 - </title>
     <!-- summernote 사용 위한 bootstrap, jquery -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
