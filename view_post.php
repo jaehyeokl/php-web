@@ -2,6 +2,37 @@
     include 'login_session.php';   
 ?>
 
+
+<?php
+    // 일정시간 이내 같은 게시글을 여러번 볼때 조회수 증가하지 않기 위한 쿠키 생성
+    // 쿠키 이름을 "클라이언트ip_게시글페이지" 형태로 저장하여 해당 클라이언트에서
+    // 특정 게시물을 조회했다는 사실을 기록한다
+    
+    // $ip = $_SERVER['REMOTE_ADDR'];
+    // $cookie_name = "ip".$ip."postId".$_GET['id'];
+    // echo $cookie_name;
+    
+
+    // // setcookie($cookie_name, "none", time() + 60);
+    // // echo $_COOKIE[$name];
+    // echo $_COOKIE[$cookie_name];
+    // echo $_COOKEI
+    
+
+    // // 조회수를 증가해야할때 add_hit = true;
+    // $add_hit;
+    // if (!var_dump($_COOKIE[$cookie_name])) {
+    //     // 클라이언트가 게시글을 처음 조회할때 3시간동안 유효한 쿠키를 생성
+    //     setcookie($cookie_name, "none", time() + 60*60*3);
+    //     // $add_hit = 
+    //     echo "쿠키없음";
+    // } else {
+    //     // 쿠키가 있을때 새로 쿠키를 생성하여 시간을 초기화한다
+    //     setcookie($cookie_name, "none", time() + 60*60*3);
+    //     echo "쿠키있음";
+    // }
+?>
+
 <?php
     // DB 연결
     include_once("../file/dbconnect.php");
