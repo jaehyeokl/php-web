@@ -8,10 +8,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="메인페이지">
+    <meta name="description" content="추천활동">
     <meta property="og:title" content="ego lego" />
     <meta property="og:description" content="활동적인 아웃도어 라이프스타일" />
-    <title>메인</title>
+    <title>추천 활동</title>
     <link rel="stylesheet" href="css/index.css">
     <script src="https://kit.fontawesome.com/8451689280.js" crossorigin="anonymous"></script>
 </head>
@@ -43,10 +43,7 @@
             ?>
         </ul>
     </nav>
-    <!-- <video muted autoplay>
-        <source src="video/index.mp4" type="video/mp4">
-        <strong>Your browser does not support the video tag.</strong>
-    </video> -->
-</body>
+    
 
+</body>
 </html>
