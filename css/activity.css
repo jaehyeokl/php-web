@@ -1,0 +1,143 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden; 
+    overflow-x: hidden;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+}
+
+/* 메뉴 바 */
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: black;
+}
+
+.navbar__logo {
+    font-size: 26px;
+}
+
+.navbar__logo i {
+    color: red;
+}
+
+.navbar__menu {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+}
+
+.navbar__menu li {
+    font-size: 20px;
+    padding : 8px 15px;
+}
+
+.navbar__links {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+}
+
+.navbar__links li {
+    font-size: 12px;
+    padding: 8px 10px;
+}
+
+/* 추천활동 */
+
+.section__body {
+    width: 900px;
+    margin: 30px auto 20px;
+}
+
+.section__header {
+    
+}
+
+.section__list ul {
+    padding: 0;
+    border-top: solid 1px #444444;
+}
+
+.section__list li {
+    box-sizing: border-box;
+    height : 180px;
+    display :flex;
+    align-items: center;
+    border-bottom: double 1px #444444;
+    padding: 20px 0 20px 30px;
+}
+
+.thumbnail {
+    /* width: 180px;
+    height: 140px; */
+}
+
+.thumbnail img {
+    width: 180px;
+    height: 140px;
+    border-radius: 15px;
+}
+
+.contents {
+    height: 140px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 30px;
+}
+
+.contents__title {
+    margin: 3px 0 0;
+    font-size: 20px;
+}
+
+.contents__title a {
+    text-decoration: none;
+    color: #444444;
+}
+
+.contents__preview {
+    margin: 0;
+    width: 500px;
+    height: 45px;
+    font-size: 16px;
+    /* white-space:nowrap; */
+    word-break:break-all;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.contents__preview a {
+    text-decoration: none;
+    color: black;
+    opacity: 0.5;
+}
+
+.contents__info {
+    margin-bottom: 3px;
+    font-size: 12px;
+}
+
+.contents__info em {
+    font-style: normal;
+    color: black;
+    opacity: 0.5;
+}
+
+.thumb {
+    margin: 0 auto;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.thumb i {
+    color: rgb(236, 31, 31);
+}
+
