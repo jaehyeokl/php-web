@@ -113,8 +113,8 @@
     <!-- 메뉴바 -->
     <nav class="navbar">
         <div class="navbar__logo">
-            <i class="fab fa-html5"></i>
-            <a href="/index.php">WebSite</a>
+            <!-- <i class="fab fa-html5"></i> -->
+            <a href="/index.php">ego lego</a>
         </div>
 
         <ul class="navbar__menu">
