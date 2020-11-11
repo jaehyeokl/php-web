@@ -47,9 +47,10 @@
     <!-- 추천 활동 -->
     <section class="section__body">
         <header class="section__header">
-            섹션 헤더
+            <h2>추천 활동</h2>
+            <a href="">글쓰기</a>
         </header>
-
+        <!-- 게시글 목록 -->
         <section class="section__list">
             <ul>
                 <li>
@@ -98,6 +99,7 @@
                 </li>
             </ul>
         </section>
+        <!-- 하단 페이지 버튼 -->
         <div class="pages">
             <ul>
                 <li>1</li>
