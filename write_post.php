@@ -51,8 +51,8 @@
         <ul class="navbar__menu">
             <li><a href="board.php">자유게시판</a></li>
             <li><a href="activity.php">추천활동</a></li>
-            <li><a href="">Menu3</a></li>
-            <li><a href="">Menu4</a></li>
+            <!-- <li><a href="">Menu3</a></li>
+            <li><a href="">Menu4</a></li> -->
         </ul>
 
         <ul class="navbar__links">
