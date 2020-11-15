@@ -22,6 +22,13 @@ io.on('connection', (socket) => {
     console.log("User was disconnected");
   });
 
+  socket.on("join_chat", (data) => {
+    console.log("join user is " + data);
+
+    let name = data;
+    io.emit("join_chat", data);
+  })
+
 });
 
 

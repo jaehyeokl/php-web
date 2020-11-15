@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="오픈 채팅">
+    <meta property="og:title" content="ego lego" />
+    <meta property="og:description" content="활동적인 아웃도어 라이프스타일" />
+    <title>오픈채팅</title>
+    <link rel="stylesheet" href="/css/open_chat.css">
+    <script src="https://kit.fontawesome.com/8451689280.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- 메뉴바 -->
+    <nav class="navbar">
+        <div class="navbar__logo">
+            <!-- <i class="fab fa-html5"></i> -->
+            <a href="/index.php">ego lego</a>
+        </div>
+
+        <ul class="navbar__menu">
+            <li><a href="/../../index.php">자유게시판</a></li>
+            <li><a href="/web/activity.php">추천활동</a></li>
+            <li><a href="http://ego-lego.site:3000/open_chat.html">오픈채팅</a></li>
+            <!-- <li><a href="">Menu4</a></li> -->
+        </ul>
+
+        <ul class="navbar__links">
+            <!-- <?php
+                if ($login_session) {
+                    echo "<li><span style='color:white'>{$_SESSION['name']} 님</span></li>";
+                    echo "<li><a href='logout_session.php'>로그아웃</a></li>";
+                } else {
+                    echo "<li><a href='signin.php'>로그인</a></li>";
+                    echo "<li><a href='signup.php'>회원가입</a></li>";
+                }
+            ?> -->
+        </ul>
+    </nav>
+
+    <div class="chat">
+        <h2>오픈채팅방</h2>
+        <div class="chat__scroll">
+            <ul class="chat__messages">
+                
+            </ul>
+        </div>
+        <div class="chat__input">
+            <input type="text">
+            <button>전송</button>
+        </div>
+    </div>
+    <!-- 라이브러리 호출 -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const name = prompt('채팅에 사용할 이름을 입력해주세요');
+        
+        // socket.io 서버에 접속
+        let socket = io();
+
+        // 클라이언트가 채팅에 참여할 이름을 서버에 전달한다
+        socket.emit("join_chat", name);
+
+        // 채팅방 참가(join_caht) 인원이 있을때마다 서버로부터 참가자 데이터를 전달받는다 
+        socket.on("join_chat", (name) => {
+            let messageTag = document.createElement("li");
+            let joinMessage = name + "님이 입장하였습니다";
+            // css 적용 위한 class 부여
+            messageTag.classList.add("join-message");
+
+            // 채팅 메세지 태그를 추가
+            document.querySelector(".chat__messages").append(messageTag);
+            messageTag.append(joinMessage);
+            // console.log(data); 
+        });
+        
+    </script>
+
+
+    <!-- <select>
+        <option value="Room1">Room1</option>
+        <option value="Room2">Room2</option>
+    </select> -->
+    
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+        // // 소켓 연결
+        // let socket = io();
+
+        // // socket.on('connect', () => {
+        // //     console.log("Connected to server");
+        // // });
+
+        // // socket.on('disconnect', () => {
+        // //     console.log("disconnected from server");
+        // // });
+        
+        // // 네임스페이스 연결
+        // function nameSpace(nsp) {
+        //     const nameSpace = io('/nameSpace' + nsp);
+
+        //     nameSpace.on('news', (data) => {
+        //         console.log(data.hello);
+        //     });
+        // }
+
+        // // Room
+        // // let socket = io(); //default namespace
+        // const name = prompt('name');
+        // let room = ['room1', 'room2'];
+        // let num = 0;
+
+        // socket.emit('joinRoom', num, name);
+
+        // // document.querySelector('select').addEventListener('change', () => {
+        // //     socket.emit('')
+        // // });
+
+
+
+
+    </script>
+</body>
+
+</html>
+
+
+
+
+
