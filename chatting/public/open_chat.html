@@ -140,6 +140,9 @@
             // 채팅창에 메세지 반영
             document.querySelector(".chat__messages").append(messageTag);
             messageTag.append(chatMessage);
+            // 채팅창의 스크롤을 가장 아래로 이동(최근 메세지 보기)
+            let chatScroll = document.querySelector(".chat__scroll");
+            chatScroll.scrollTop = chatScroll.scrollHeight;
         });
     </script>
 </body>
