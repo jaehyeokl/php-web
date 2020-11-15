@@ -97,6 +97,6 @@ a {
     justify-content: center;
 }
 
-.chat__input input {
-    width:500px;
+.chat__input .input__message {
+    width: 500px;
 }
