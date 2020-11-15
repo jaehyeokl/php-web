@@ -19,7 +19,8 @@ io.on('connection', (socket) => {
 
   // 클라이언트가 접속을 끊었을때 이벤트
   socket.on('disconnect', () => {
-    console.log("User was disconnected");
+    // console.log(name + " was disconnected");
+    // socket.broadcast.emit("leave_chat", name);
   });
 
 
