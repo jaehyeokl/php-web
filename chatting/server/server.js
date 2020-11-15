@@ -22,12 +22,21 @@ io.on('connection', (socket) => {
     console.log("User was disconnected");
   });
 
-  socket.on("join_chat", (data) => {
-    console.log("join user is " + data);
 
-    let name = data;
-    io.emit("join_chat", data);
-  })
+  // 특정 클라이언트로 부터 채팅에 참여할 이름을 전달받아
+  // 전체 클라이언트에게 전달한다
+  socket.on("join_chat", (name) => {
+    console.log("join user is " + name);
+    io.emit("join_chat", name);
+  });
+
+  // 특정 클라이언트로 부터 채팅 메세지를 전달받아
+  // 해당 클라이언트를 제외한 나머지 클라언트 전체에 메세지를 전달한다
+  // 메세지를 보낼때 클라이언트 자체적으로 메세지를 화면에 표시하기 때문에
+  socket.on("send_message", (data) => {
+    console.log("message : " + data.name + " : " + data.message);
+    socket.broadcast.emit("send_message", data);
+  });
 
 });
 

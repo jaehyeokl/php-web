@@ -70,7 +70,24 @@ a {
 }
 
 .chat__messages .join-message {
+    margin-bottom: 10px;
     color: blue;
+    opacity: 0.8;
+    font-size: 16px;
+}
+
+.chat__messages .my-message {
+    margin-bottom: 5px;
+    color: black;
+    opacity: 0.8;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.chat__messages .other-message {
+    margin-bottom: 5px;
+    color: black;
+    opacity: 0.8;
     font-size: 14px;
 }
 
