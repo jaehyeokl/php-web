@@ -12,7 +12,7 @@
     <meta property="og:title" content="ego lego" />
     <meta property="og:description" content="활동적인 아웃도어 라이프스타일" />
     <title>메인</title>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/news.css">
     <script src="https://kit.fontawesome.com/8451689280.js" crossorigin="anonymous"></script>
 </head>
 

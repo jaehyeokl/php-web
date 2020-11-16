@@ -122,7 +122,8 @@
 
         <ul class="navbar__menu">
             <li><a href="board.php">자유게시판</a></li>
-            <li><a href="activity.php">추천활동</a></li>
+            <li><a href="news.php">관련뉴스</a></li>
+            <li><a href="http://ego-lego.site:3000/open_chat.html">오픈채팅</a></li>
             <!-- <li><a href="">Menu3</a></li>
             <li><a href="">Menu4</a></li> -->
         </ul>
