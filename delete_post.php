@@ -22,6 +22,6 @@
     }
     $conn = null;
 
-    header("Location: http://54.180.215.159/board.php");
+    header("Location: https://ego-lego.site/board.php");
     die();
 ?>

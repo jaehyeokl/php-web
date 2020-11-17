@@ -27,7 +27,7 @@
                         $_SESSION['email'] = $row['email'];
                         $_SESSION['name'] = $row['name'];
                         
-                        header("Location: http://54.180.215.159");
+                        header("Location: https://ego-lego.site");
                         die();
 
                     } else {

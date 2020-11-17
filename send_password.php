@@ -26,13 +26,13 @@
     "[패스워드 변경]
 
 아래 링크를 통해 비밀변호를 변경해주세요.
-http://54.180.215.159/change_password.php?email_hash=$email_hash}";
+https://ego-lego.site/change_password.php?email_hash=$email_hash}";
     $mail->Send();
 
     echo "
         <script>
             alert('[비밀번호 변경]\\n\\n[{$_POST['email']}]\\n계정으로 메일을 발송하였습니다\\n\\n비밀번호 재설정 후 이용해주세요');
-            location.href = 'http://54.180.215.159/signin.php';
+            location.href = 'https://ego-lego.site/signin.php';
         </script>
         ";
 ?>

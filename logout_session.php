@@ -4,6 +4,6 @@
     session_unset();
     session_destroy();
 
-    header("Location: http://54.180.215.159");
+    header("Location: https://ego-lego.site");
     die();
 ?>
