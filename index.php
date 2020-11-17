@@ -17,6 +17,31 @@
 </head>
 
 <body>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-analytics.js"></script>
+
+    <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+        apiKey: "AIzaSyDU51kZHJ6wKJt_iVYnFVN19O-5Emcsj9M",
+        authDomain: "ego-lego-c8c1e.firebaseapp.com",
+        databaseURL: "https://ego-lego-c8c1e.firebaseio.com",
+        projectId: "ego-lego-c8c1e",
+        storageBucket: "ego-lego-c8c1e.appspot.com",
+        messagingSenderId: "694569032238",
+        appId: "1:694569032238:web:a5c40ca79d5a599816ddbf",
+        measurementId: "G-F0QY94TSD3"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    </script>
+    
     <!-- 메뉴바 -->
     <nav class="navbar">
         <div class="navbar__logo">
@@ -48,5 +73,6 @@
         <strong>Your browser does not support the video tag.</strong>
     </video> -->
 </body>
+
 
 </html>
