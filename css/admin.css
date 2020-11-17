@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+}
+
+/* 메뉴 바 */
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: black;
+}
+
+.navbar__logo {
+    font-size: 26px;
+}
+
+.navbar__logo i {
+    color: red;
+}
+
+.navbar__menu {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+}
+
+.navbar__menu li {
+    font-size: 20px;
+    padding : 8px 15px;
+}
+
+.navbar__links {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+}
+
+.navbar__links li {
+    font-size: 12px;
+    padding: 8px 10px;
+}
